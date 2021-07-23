@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+		<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	
+	<div class="container-fluid">
+		<div class="card"> 
+		<div class="card-header">
+			<span class="label label-info" th:text="${titulo}"></span>
+		</div>
+		
+		<div class="card-body">
+            <table class="table table-sm table-hover" >
+					<thead style="background-color: orange;">
+						<tr >
+							<th style="font-size: 3px;">DOCUMENTO</th>
+							<th style="font-size: 3px;">MÊS</th>
+							<th style="font-size: 3px;">ANO</th>
+							<th style="font-size: 3px;">VALOR DE QUOTA</th>
+							<th style="font-size: 3px;">DATA DE PAG. QUOTA</th>
+							<th style="font-size: 3px;">VALOR DE MULTA</th>
+							<th style="font-size: 3px;">NÚMERO RECIBO</th>
+							<th style="background-color: cyan;font-size: 3px;" >PAGO</th>
+							<th style="background-color: red;font-size: 3px;">MULTA</th>
+							<th style="font-size: 3px;">JUROS APLICADO</th>
+							<th style="font-size: 3px;">OPERAÇÃO</th>
+						</tr>
+					</thead>
+					<tbody >
+						<tr  th:each="quota: ${quotas}">
+						    <td style="background-color: orange;font-size: 3px;" th:text="${quota.tipodedocumento}"></td>
+							<td style="background-color: orange;font-size: 3px;" th:text="${quota.mespago}"></td>
+							<td style="background-color: orange;font-size: 3px;" th:text="${quota.anopago}"></td>
+							<td style="font-size: 3px;"  th:text="${quota.valor}"></td>
+							<td style="font-size: 3px;" th:text="${quota.datapagamentoquota}"></td>
+							<!-- <td th:text="${quota.datapagamentojuro}"></td> -->
+							<td style="font-size: 3px;"  th:text="${quota.valordamulta}"></td>
+							<!-- <td ><input type="checkbox" th:value="${quota.recebido}"></td>	 -->
+							<td style="font-size: 3px;" th:text="${quota.numerorecibo}"></td>
+							<!--<td th:text="${quota.dataderecepcao}"></td>-->
+							<td style="font-size: 3px;" ><input class="btn btn-sm btn-default" readonly="readonly"  type="button" th:value="${quota.isRecebido}" th:if="${quota.isRecebido} "  style="background-color: cyan;"></td>						
+							<td style="font-size: 3px;" ><input class="btn btn-sm btn-default" readonly="readonly" type="button" th:value="${quota.isMultado}" th:if="${quota.isMultado} "  style="background-color: red;"></td>
+                          	<td style="font-size: 3px;" th:text="${quota.juros}+'%'"></td>	
+                          	
+                          				
+							<td ><a style="color: blue;font-size: 3px;" th:href="@{/quota/edit/{id}(id=${quota.id})}">Editar</a></td>
+						</tr>	
+					</tbody>
+			</table>
+      
+		</div>
+	</div>
+	</div>
+</body>
+</html>

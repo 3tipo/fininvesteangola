@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container-fluid">
+		<div class="card"> 
+		<div class="card-header">
+			<span class="label label-info" th:text="${titulo}"></span>
+		</div>
+		
+		<div class="card-body">
+            <table class="table table-sm table-hover" >
+					<thead >
+						<tr>
+							<th style="font-size: 3px;">NOME</th>
+							<th style="font-size: 3px;">BI/PASSAPORT</th>
+							<th style="font-size: 3px;">PAGAMENTO DE TAXA</th>
+							<th style="font-size: 3px;">PAGAMENTO DE QUOTA</th>
+							<th style="font-size: 3px;">BONOS</th>
+							<th style="font-size: 3px;">RENOVAR SENHA</th>
+							</tr>
+					</thead>
+					<tbody >
+						<tr  th:each="socio: ${socios}">
+							<td style="font-size: 3px;" th:text="${socio.dadospessoais.nomecompleto}"></td>
+							<td style="font-size: 3px;" th:text="${socio.identificacao.numero}"></td>
+							<td style="font-size: 3px;" ><a th:href="@{/socio/pagartaxa/{id}(id=${socio.id})}"><span  class="btn btn-xsm btn-warning" ></span></a></td>
+							<td style="font-size: 3px;"><a th:href="@{/socio/pagarquota/{id}(id=${socio.id})}"><span  class="btn btn-xsm btn-warning"></span></a></td>
+							<td style="font-size: 3px;" ><a th:href="@{/socio/istorico/{id}(id=${socio.id})}"><span   class="btn btn-xsm btn-info"></span></a></td>
+							<td style="font-size: 3px;" ><a th:href="@{/mudarsenha/{id}(id=${socio.id})}"><span   >(***)</span></a></td>
+						
+						<!--  -->
+						</tr>	
+					</tbody>
+			</table>
+      
+		</div>
+</div>
+</div>
+</body>
+</html>

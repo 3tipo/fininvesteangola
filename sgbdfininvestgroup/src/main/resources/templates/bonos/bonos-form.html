@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container py-4">
+		<div class="card"><div class="card-header">
+			<span th:text="${titulo}"></span>
+		</div>
+		<div class="card-body" >
+
+			<form th:action="@{/bonos/save}" th:object="${bonosAdquirido}"
+				method="post">
+				<div class="form-group row">
+					<div class="col-sm-2" hidden="">
+						<b>CÓDIGO DO CRÉDITO</b> <span style="color: red;">*</span><input
+							required="required" readonly="readonly" type="text"
+							class="form-control" id="cc" style="background-color: yellow;"
+							th:field="*{codigodocredito}">
+					</div>
+				</div>
+			<div class="form-group row">
+					<div class="col-sm-3">
+						<b>CLIENTE</b> <input class="form-control"
+							style="background-color: yellow;" readonly="readonly" type="text"
+							id="npnome" th:field="*{nomedocliente}">
+					</div>
+			</div>
+			<div class="form-group row">
+			<div class="col-sm-3">
+						<b>VALOR DO BONOS</b><span style="color: red;">*</span><input
+							class="form-control" required="required" 
+							style="background-color: yellow;" readonly="readonly"
+							type="number" min="10" id="vb" th:field="*{valorbonos}">
+					</div>
+
+			</div>
+			<div class="form-group row">
+			<div class="col-sm-3">
+						<b>DATA DE REGISTO</b><span style="color: red;">*</span><input class="form-control"
+							 type="date" id="dat" required="required"
+							style="background-color: yellow;" th:field="*{dataregisto}">
+					</div>
+
+			</div>
+			<div class="form-group row">
+			<div class="col-sm-3">
+						<b>DATA DE ENTREGA</b><span style="color: red;">*</span><input class="form-control"
+							 type="date" id="dat" 
+							style="background-color: yellow;" th:field="*{datapagamento}">
+					</div>
+
+			</div>
+
+			<div class="form-group row">
+			<div class="col-sm-3">
+						<b>SÓCIO</b> <input type="text" class="form-control" id="Sc"
+							placeholder="BI, do intermediario" readonly="readonly"
+							th:field="*{bibeneficiari}">
+					</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-3">
+						<b>ESTADO DO BONOS</b><span style="color: red;">*</span> <select
+							class="form-control" th:field="*{estadobonus} " name="escalao"
+							id="escalao" required="required">
+							<option value=" " selected="selected">=ESCOLHE=</option>
+							<option value="PENDENTE">PENDENTE</option>
+							<option value="PAGO">PAGO</option>
+						</select>
+			</div>
+			</div>
+			<div class="form-group row">
+				
+					<div class="col-sm-2">
+						<input type="submit" value="SALVAR"
+							class="form-control btn btn-primary">
+					</div>
+					<div class="col-sm-2">
+						<a th:href="@{/pedidos}"
+							class="form-control btn btn-info">VOLTAR</a>
+					</div>
+					<div class="col-sm-8"></div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container-fluid">
+		<div class="card"><div class="card-header">
+			<span class="label label-info" th:text="${assunto}"></span>
+		</div>
+		
+		<div class="card-body">
+            <table class="table table-sm table-hover" id="tablet" style="align-content: center;">
+					<thead style="background-color: olive;">
+						<tr>
+							<th style="font-size: 3px;">CLIENTE</th>
+							<th style="font-size: 3px;">CRÉDITO</th>
+							<th style="font-size: 3px;">VALOR DO CRÉDITO</th>
+							<th style="font-size: 3px;">PRAZO DE REEMBOLSO</th>
+							<th style="font-size: 3px;">VALOR A REEMBOLSAR</th>
+							<th style="font-size: 3px;">ESTADO DO CRÉDITO</th>
+							<th style="font-size: 3px;">SOCIO INTERMEDIÉRIO</th>
+							<th style="font-size: 3px;">ESTADO DO BONOS</th>
+							<th style="font-size: 3px;">BONOS</th>
+							<th style="font-size: 3px;">DETALHE</th>
+							<!-- <th >PDF</th> -->
+						</tr>
+					</thead>
+					<tbody >
+						<tr th:each="p: ${pedidos}"   >
+						<td  style="background-color: olive;font-size: 3px;" th:text="${p.getIdentificacao().primeironome}"></td>
+							<td  style="background-color: olive;font-size: 3px;" th:text="${p.tipodecredito}"></td>
+							<td  style="background-color: olive;font-size: 3px;" th:text="${p.valordocreditokz}"></td>
+							<td style="font-size: 3px;" th:text="${p.datafim}"></td>
+							<td style="font-size: 3px;" th:text="${p.reembolsoSemMulta()}+'kz'"></td>
+							<td style="font-size: 3px;" th:text="${p.estado}"></td>
+							<td style="font-size: 3px;" th:text="${p.bisocio}"></td>
+							<td style="font-size: 3px;" th:text="${p.bonificado}"></td>						
+							<td style="font-size: 3px;">
+							<a th:href="@{/bonos/{id}(id=${p.id})}"><span  >Bonos</span></a></td>
+							<td style="font-size: 3px;"><a th:href="@{/detalhes/{id}(id=${p.id})}"><span  >Detalhes</span></a></td>
+							<!-- <td><a th:href="@{/credito/exportar/{id}(id=${p.id})}"><span  >.PDF</span></a></td> -->
+						
+						
+						</tr>	
+					</tbody>
+			</table>
+      </div>
+		</div>
+</div>
+	
+</body>
+</html>

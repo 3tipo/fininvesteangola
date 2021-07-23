@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container">
+		<div class="card"><div class="card-header">
+			<span th:text="${titulo}"></span>
+		</div>
+		<div class="card-body">
+
+			<form th:action="@{/quota/save}" th:object="${quota}" method="post"
+				style="align-content: center;">
+				<div class="form-group row">
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">DESIGNAÇÃO DE ESCALÃO </b> <span style="color: red;">*</span><input
+							class="form-control" required="required" type="text" id="escalao"
+							th:field="*{escalao}">
+					</div>
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">VALOR DE QUOTA AKZ</b> <span style="color: red;">*</span><input
+							required="required" type="number" min="10000" max="1000000" class="form-control" id="valor"
+							th:field="*{valorquota}">
+					</div>
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">DATA DE REGISTO</b><span style="color: red;">*</span> <input required="required" class="form-control" type="date"
+							id="npnome" th:field="*{dataalteracao}">
+					</div>
+
+				</div>
+				<!-- segunda linha -->
+				<div class="form-group row">
+
+					<div class="col-sm-3">
+						<input type="submit" value="SALVAR"
+							class="form-control btn btn-primary">
+					</div>
+					<div class="col-sm-3">
+						<input type="reset" value="CANCELAR"
+							class="form-control btn btn-danger">
+					</div>
+
+				</div>
+
+			</form>
+            <table class="table table-sm table-hover" >
+					<thead class="header-black">
+						<tr>
+							<th style="color: green;font-family: cursive;font-size:23;font-size: 8px;">DESIGNAÇÃO DE ESCALÃO</th>
+							<th style="color: green;font-family: cursive;font-size:23;font-size: 8px;">VALOR DE QUOTA A KZ</th>
+							<th style="color: green;font-family: cursive;font-size:23;font-size: 8px;">DATA DE REGISTO</th>
+							<th style="color: green;font-family: cursive;font-size:23;font-size: 8px;">OPÇÃO</th>
+						</tr>
+					</thead>
+					<tbody >
+						
+						<tr  th:each="quota: ${quotas}">
+							<td style="color: teal;"  th:text="${quota.escalao}"></td>
+							<td th:text="${quota.valorquota}"></td>
+							<td style="color: blue;" th:text="${quota.dataalteracao}"></td>
+							<td ><a th:href="@{/quota/excluir/{id}(id=${quota.id})}"><span  >X</span></a></td>
+						</tr>
+						
+						
+					</tbody>
+			</table>
+      
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	<div class="card">
+		<div class="card-header">
+			<span th:text="${titulo2}"></span>
+		</div>
+		<div class="card-body">
+
+			<form th:action="@{/juro/save}" th:object="${juro}" method="post"
+				style="align-content: center;">
+				<div class="form-group row">
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">JUROS APLICADO A</b><span style="color: red;">*</span>
+						<select required="required" class="form-control" th:field="*{taxaoucota} " name="tipo" id="tipo">
+							<option value=" " selected="selected">=ESCOLHE=</option>
+							<option value="ATRASOQUOTA">ATRASO DE QUOTA</option>
+							<option value="ATRASOTAXA">ATRASO DE TAXA</option>
+							<option value="BONOS">BONOS</option>
+						</select>
+					</div>
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">VALOR DE JURO (%)</b> <span style="color: red;">*</span><input
+							required="required" type="number" min="1" max="99" class="form-control" id="valor"
+							th:field="*{valorjuro}">
+					</div>
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">DATA DE REGISTO</b><span style="color: red;">*</span> <input required="required" class="form-control" type="date"
+							id="npnome" th:field="*{dataalteracao}">
+					</div>
+
+				</div>
+				<!-- segunda linha -->
+				<div class="form-group row">
+
+					<div class="col-sm-3">
+						<input type="submit" value="SALVAR"
+							class="form-control btn btn-primary">
+					</div>
+					<div class="col-sm-3">
+						<input type="reset" value="CANCELAR"
+							class="form-control btn btn-danger">
+					</div>
+
+				</div>
+
+			</form>
+	
+            <table class="table table-sm table-hover" >
+					<thead class="header-black">
+						<tr>
+							<th style="color: green;font-family: cursive;font-size:8px; " >DESIGNÇÃO DE JURO</th>
+							<th style="color: green;font-family: cursive;font-size:8px; ">JURO(%)</th>
+							<th style="color: green;font-family: cursive;font-size:8px; ">DATA DE REGISTO</th>
+							<th style="color: green;font-family: cursive;font-size:8px; ">OPÇÃO</th>
+						</tr>
+					</thead>
+					<tbody >
+						<tr  th:each="juro: ${juros}">
+							<td style="color: teal;"  th:text="${juro.taxaoucota}"></td>
+							<td th:text="${juro.valorjuro}"></td>
+							<td style="color: blue;" th:text="${juro.dataalteracao}"></td>
+							<td ><a th:href="@{/juro/excluir/{id}(id=${juro.id})}"><span  >X</span></a></td>
+						</tr>
+						
+					</tbody>
+			</table>
+      
+		</div>
+	</div>
+	
+	
+	<div class="card ">
+		<div class="card-header">
+			<span th:text="${titulo1}"></span>
+		</div>
+		<div class="card-body">
+
+			<form th:action="@{/taxa/save}" th:object="${taxa}" method="post"
+				style="align-content: center;">
+				<div class="form-group row">
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">DESIGNAÇÃO DE ESCALÃO </b> <span style="color: red;">*</span><input
+							class="form-control" required="required" type="text" id="escalao"
+							th:field="*{escalao}">
+					</div>
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">VALOR DE TAXA AKZ</b> <span style="color: red;">*</span><input
+							required="required" type="number" min="100" max="200000" class="form-control" id="valor"
+							th:field="*{valortaxa}">
+					</div>
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">DATA DE REGISTO</b><span style="color: red;">*</span> <input required="required" class="form-control" type="date"
+							id="npnome" th:field="*{dataalteracao}">
+					</div>
+
+				</div>
+				<!-- segunda linha -->
+				<div class="form-group row">
+
+					<div class="col-sm-3">
+						<input type="submit" value="SALVAR"
+							class="form-control btn btn-primary">
+					</div>
+					<div class="col-sm-3">
+						<input type="reset" value="CANCELAR"
+							class="form-control btn btn-danger">
+					</div>
+
+				</div>
+
+			</form>
+			
+			<hr>
+            <table class="table table-sm table-hover" >
+					<thead class="header-black" >
+						<tr>
+							<th style="color: green;font-family: cursive;font-size:8px; ">DESIGNAÇÃO DE ESCALÃO</th>
+							<th style="color: green;font-family: cursive;font-size:8px; ">VALOR DO ESCALÃO AKZ</th>
+							<th style="color: green;font-family: cursive;font-size:8px; ">DATA DE REGISTO</th>
+							<th style="color: green;font-family: cursive;font-size:8px; ">OPÇÃO</th>
+						</tr>
+					</thead>
+					<tbody >
+						<tr  th:each="taxa: ${taxas}">
+							<td style="color: teal;"  th:text="${taxa.escalao}"></td>
+							<td th:text="${taxa.valortaxa}"></td>
+							<td style="color: blue;" th:text="${taxa.dataalteracao}"></td>
+							<td ><a th:href="@{/taxa/excluir/{id}(id=${taxa.id})}"><span  >X</span></a></td>
+						</tr>
+						
+					</tbody>
+			</table>
+      
+		</div>
+	</div>
+	
+	</div>
+
+</body>
+</html>

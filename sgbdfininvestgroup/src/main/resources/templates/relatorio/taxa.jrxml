@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="taxa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5d7f13c8-d354-4d2a-a45b-49422689e4ff">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="nomedosocio" class="java.lang.String"/>
+	<parameter name="codigo" class="java.lang.String"/>
+	<parameter name="numerorecibo" class="java.lang.String"/>
+	<parameter name="valor" class="java.lang.Double"/>
+	<parameter name="secretaria" class="java.lang.String"/>
+	<parameter name="datarecepcao" class="java.lang.String"/>
+	<parameter name="mesano" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="198" splitType="Stretch">
+			<image>
+				<reportElement x="235" y="0" width="90" height="85" uuid="f66146bc-82b3-4407-ae0a-f1c665678f76"/>
+				<imageExpression><![CDATA["templates/relatorio/logo.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="2" y="79" width="552" height="30" uuid="4a66c43f-51ff-4785-8486-5e188fad6007"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FININVEST –  ANGOLA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="374" y="0" width="176" height="20" uuid="c0906613-52c9-4783-a6fd-c8103ccab2f4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECIBO DE TAXA ORIGINAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="124" width="553" height="30" uuid="ba8e1b72-a923-4eac-9f17-202e483612a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPROVATIVO DE RECEBIMENTO DO VALOR DE TAXA ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="163" width="552" height="28" uuid="9d3dd334-adcf-42d7-88cd-feeb4ebaaf0f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RECIBO Nº: "+$P{numerorecibo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="107" width="555" height="23" uuid="4b6eed2a-ae29-4cf7-b6c0-076a170cf378"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ FUNDO DE INVESTIMENTO DE ANGOLA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="2" y="154" width="553" height="1" uuid="7141aa1e-cec4-41bc-8c43-2d4aab0496da"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="110" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="0" width="553" height="110" uuid="3972116d-73d4-411b-b749-341ee56a80ce"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="19" width="48" height="30" uuid="0409b75b-7844-4906-a437-d741b7332ff8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="19" width="48" height="30" uuid="d2dfa487-5490-422c-869e-7f377add5130"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="51" width="90" height="30" uuid="9398e76d-affb-4d31-b670-7ec8cd5856dd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR AKZ:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="19" width="183" height="30" uuid="db0139ff-dab6-4de1-9fdb-c8866221b58e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="19" width="269" height="30" uuid="fb6a13f9-489e-4057-b10f-830aa5490158"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nomedosocio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00) ">
+				<reportElement x="90" y="51" width="145" height="30" uuid="ba00a95e-d9d6-4d4c-ae01-b7fe65acf347"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{valor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="235" y="51" width="105" height="30" uuid="c27734dc-6691-4fea-b51d-f3f943be3fd6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REFERENTE A]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="340" y="51" width="212" height="30" uuid="c80e9918-c95b-47de-81f2-3564f7b98e23"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mesano}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="82" width="235" height="20" uuid="96255ccf-1740-49a7-8797-469e78271d1c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DE EMISSÃO DO RECIBO]]></text>
+			</staticText>
+			<textField pattern="YYYY/MM/dd h:mm a">
+				<reportElement x="235" y="80" width="318" height="22" uuid="c202939c-c79f-42c6-8ffe-ae14b7cbe831"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="-1" y="0" width="555" height="30" backcolor="#D6D2D2" uuid="78c8a808-eb6c-4246-97e4-7a04dea2630c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="30" backcolor="#B0ADA7" uuid="e3f032a9-00d2-42c0-92fb-7e529ca4e91d"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECIBO ELECTRÓNICO PROCESSADO POR SOFTWARE FINISOFT-ANGOLA - V.1.0.0]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="46">
+			<staticText>
+				<reportElement x="179" y="5" width="210" height="20" uuid="c55740c9-7d25-42f2-9c8a-41d9db77c130"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[A SECRETÁRIA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="150" y="45" width="288" height="1" uuid="9bdc396e-6ad3-408f-88ff-5e4e134868c2"/>
+			</rectangle>
+			<textField>
+				<reportElement x="160" y="23" width="260" height="22" uuid="b6a64f84-ac55-43b0-b8bf-fec6d32035bc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe Script" size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{secretaria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

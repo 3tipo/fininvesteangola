@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container-fluid">
+		<div class="card"><div class="card-header">
+			<span th:text="${'REGISTAR CRÉDITO'}"></span>
+		</div>
+		<div class="card-body">
+
+			<form th:action="@{/credito/save}" th:object="${credito}" method="post"
+				style="align-content: center;">
+				<div class="form-group row">
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">TIPO DE CLIENTE</b><span style="color: red;">*</span>
+						<select required="required"  class="form-control" th:field="*{tipodecliente} " 
+						name="cl" id="cl">
+							<option value=" " selected="selected">=ESCOLHE=</option>
+							<option value="SOCIO">SÓCIO</option>
+							<option value="EXTERNO">EXTERNO</option>
+						</select>
+					</div>
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">TIPO DE CRÉDITO</b><span style="color: red;">*</span>
+						<select required="required"  class="form-control" th:field="*{tipodecredito} " 
+						name="crd" id="crd">
+							<option value=" " selected="selected">=ESCOLHE=</option>
+							<option value="CRÉDITO INVESTIMENTO">CRÉDITO INVESTIMENTO</option>
+							<option value="CRÉDITO HABITAÇÃO">CRÉDITO HABITAÇÃO</option>
+							<option value="CRÉDITO PESSOAL">CRÉDITO PESSOAL</option>
+							<option value="CRÉDITO AUTOMÓVEL">CRÉDITO AUTOMÓVEL</option>
+							<option value="CRÉDITO CONSOLIDADO">CRÉDITO CONSOLIDADO</option>
+						</select>
+					</div>
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">INTERVALO DE VALOR(KZ)</b><span style="color: red;">*</span> <input required="required" class="form-control" type="text"
+							id="inter" th:field="*{intervalodevalor}">
+					</div>
+
+				</div>
+				<!-- segunda linha -->
+				<div class="form-group row">
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">PRAZO DE REEMBOLSO</b><span style="color: red;">*</span>
+						<select required="required"  class="form-control" th:field="*{prazodereembolso} " 
+						name="pr" id="pr">
+							<option value=" " selected="selected">=ESCOLHE=</option>
+							<option value="Até 3Odais/(1)UM MÊS">Até 3O dias/(1)UM MÊS</option>
+							<option value="Até 60dias/(2)DOIS MÊSES">Até 60 dias/(2)DOIS MÊSES</option>
+							<option value="Até 90dias/(3)TRÊS MÊSES">Até 90 dias/(3)TRÊS MÊSES"</option>
+							<option value="Até 120dias/(6)SEIS MÊSES">Até 120 dias/(6)SEIS MÊSES</option>
+							<option value="Até 365dias/(1)UM ANO">Até 365 dias/(1)UM ANO</option>
+							<option value="Até 485dias/(1)UM ANO E (6)SEIS MÊSES">Até 485 dias/(1)UM ANO E (6)SEIS MÊSES</option>
+							<option value="Até 730dias/(2)DOIS ANOS">Até 730 dias/(2)DOIS ANOS</option>
+						</select>
+					</div>
+					
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">JURO APLICÁVEL</b><span style="color: red;">*</span> <input required="required" class="form-control" 
+						type="number" min="1" step="1" max="100"
+							id="inter" th:field="*{juroaplicavel}">
+					</div>
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">JURO INCUMPRIMENTO(%)</b><span style="color: red;">*</span> <input required="required" class="form-control" 
+						type="number" min="1" step="1" max="100"
+							id="inter" th:field="*{taxadeincumprimento}">
+					</div>
+				</div>
+				
+				<!-- TERCEIRA LINHA -->
+				<div class="form-group row">
+
+					
+					<div class="col-sm-3">
+						<b style="font-size: 8px;">OBS.</b>
+						<span style="color: red;">*</span> <textarea th:field="*{descricao}"
+						 rows="5" cols="70" class="form-control">
+						
+						</textarea>
+					</div>
+					<div class="col-sm-3">
+					<b style="font-size: 8px;color: white">OBS.</b>
+						<input type="submit" value="SALVAR"
+							class="form-control btn btn-primary">
+					</div>
+					<div class="col-sm-3">
+						<b style="font-size: 8px;color: white">OBS.</b>
+						<input type="reset" value="CANCELAR"
+							class="form-control btn btn-danger">
+					</div>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+	
+	
+	<div class="card"
+		>
+		<div class="card-header">
+			<span class="label label-info" th:text="${assunto}"></span>
+		</div>
+		
+		<div class="card-body">
+            <table class="table table-sm table-hover" id="tablet" style="align-content: center;">
+					<thead style="background-color: olive;">
+						<tr>
+							<th style="font-size: 8px;">CLIENTE</th>
+							<th style="font-size: 8px;">CRÉDITO</th>
+							<th style="font-size: 8px;">INTERVALO DE VALOR(KZ)</th>
+							<th style="font-size: 8px;">PRAZO DE REEMBOLSO</th>
+							<th style="font-size: 8px;">JURO APLICÁVEL</th>
+							<th style="font-size: 8px;">JURO POR INCUMPRIMENTO</th>
+							<th style="font-size: 8px;">OBS</th>
+							<th style="font-size: 8px;">PEDIDO</th>
+							<th style="font-size: 8px;">EXCLUIR</th>
+						</tr>
+					</thead>
+					<tbody >
+						<tr th:each="c: ${creditos}"   >
+						<td  style="background-color: olive;font-size: 8px;" th:text="${c.tipodecliente}"></td>
+							<td  style="background-color: olive;" th:text="${c.tipodecredito}"></td>
+							<td  style="background-color: olive;" th:text="${c.intervalodevalor}"></td>
+							<td  th:text="${c.prazodereembolso}"></td>
+							<td  th:text="${c.juroaplicavel}+'%'"></td>
+							<td  th:text="${c.taxadeincumprimento}+'%'"></td>
+							<td  th:text="${c.descricao}"></td>
+							<td>
+							<a th:href="@{/pedido-form/{id}(id=${c.id})}"><span  >Pedido</span></a></td>
+							<td><a th:href="@{/credito/excluir/{id}(id=${c.id})}"><span  >Excluir</span></a></td>
+							
+						</tr>	
+					</tbody>
+			</table>
+      </div>
+		</div>
+	
+	</div>
+
+</body>
+</html>

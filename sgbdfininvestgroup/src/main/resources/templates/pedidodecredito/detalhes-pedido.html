@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container-fluid">
+		<div class="card"><div class="card-header">
+			<span th:text="${'DETALHES DO PEDIDO DE CRÉDITO'}"></span>
+		</div>
+		<div class="card-body">
+
+			<form th:action="@{/pedido/alterar}" th:object="${pedidodeCredito}"
+				method="post">
+
+
+				<div class="form-group row">
+					<div class="col-sm-2" hidden="">
+						<b style="font-size: 8px;">ORDEM</b> <span style="color: red;">*</span><input
+							class="form-control" required="required"
+							style="background-color: yellow;" readonly="readonly" type="text"
+							id="id" th:value="*{id}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">CLIENTE</b> <span style="color: red;">*</span><input
+							class="form-control" required="required"
+							style="background-color: yellow;" readonly="readonly" type="text"
+							id="ctp" th:value="*{tipodecliente}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">CRÉDITO</b> <span style="color: red;">*</span><input
+							required="required" readonly="readonly" type="text"
+							class="form-control" id="cr" style="background-color: yellow;"
+							th:value="*{tipodecredito}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">INTERVALO</b> <input class="form-control" readonly="readonly"
+							type="text" id="int" style="background-color: yellow;"
+							th:value="*{intervalocred}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">PRAZO DE REEMBOLSO</b> <input class="form-control"
+							style="background-color: yellow;" readonly="readonly" type="text"
+							id="npnome" th:value="*{prazo}">
+					</div>
+					<div class="col-sm-2">
+
+						<b style="font-size: 8px;">JURO APLICÁVEL(%)</b> <input class="form-control"
+							style="background-color: yellow;"
+							type="number" id="j" th:field="*{aplicaveljuro}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">TAXA DE INCUMPRIMENTO(%)</b> <input type="number"
+							class="form-control" id="ti" style="background-color: yellow;"
+							 th:field="*{taxaincumprimento}">
+					</div>
+				</div>
+
+
+
+
+
+				<!-- segunda linha -->
+				<div class="form-group row">
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">DIAS</b> <input class="form-control" type="number" id="dd"
+							min="30" step="10"  max="730" th:field="*{dias}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">VALOR DO CRÉDITO (KZ)</b> <input type="number" min="1" readonly="readonly"
+							class="form-control" id="vc" th:value="*{valordocreditokz}">
+						
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">REEMBOLSO SEM MULTA</b> <input style="color: green;"
+							type="number" min="1" class="form-control" id="vc"
+							readonly="readonly" th:value="*{reembolsoSemMulta()}">
+
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">REEMBOLSO COM MULTA</b> <input style="color: red;"
+							type="number" min="1" class="form-control" id="vc"
+							readonly="readonly" th:value="*{reembolsoComMulta()}">
+
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">DATA DE INÍCIO DO CRÉDITO</b> <input class="form-control"
+							style="background-color: orange;" type="date" id="datai"
+						readonly="readonly"	th:value="*{datainicio}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">DATA DE FIM DO CRÉDITO</b> <input class="form-control"
+							style="background-color: orange;" type="date" id="dataf"
+							th:field="*{datafim}">
+					</div>
+
+				</div>
+
+				<!-- terceira linha -->
+				<div class="form-group row">
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">PRIMEIRO NOME</b> <span style="color: red;">*</span><input
+							class="form-control" type="text" id="ppnome"
+							th:field="${pedidodeCredito.identificacao.primeironome}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">SOBRE NOME</b> <span style="color: red;">*</span><input
+							type="text" class="form-control" id="psnome"
+							th:field="*{identificacao.segundonome}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">FILHO DE (nome do progenitor)</b> <input class="form-control"
+							type="text" id="pnpnome" th:field="*{identificacao.nomedopai}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">E DE (nome da progenitora)</b> <input class="form-control"
+							type="text" id="npnome" th:field="*{identificacao.nomedamae}">
+					</div>
+					<div class="col-sm-2">
+
+						<b style="font-size: 8px;">DATA DE NASCIMENTO</b> <input class="form-control" type="date"
+							id="data" th:field="*{identificacao.datanascimento}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">NATURALIDADE( onde nasceu )</b> <input type="text"
+							class="form-control" id="natural"
+							th:field="*{identificacao.naturalidade}">
+					</div>
+				</div>
+
+				<!-- quarta linha -->
+				<div class="form-group row">
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">PROVÍNCIA( onde reside )</b> <input class="form-control"
+							type="text" id="provin" th:field="*{identificacao.provincia}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">MUNICÍPIO( onde reside )</b> <input type="text"
+							class="form-control" id="municipio"
+							th:field="*{identificacao.municipio}">
+
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">NACIONALIDADE</b> <input class="form-control" type="text"
+							id="nacionalidade" th:field="*{identificacao._nacionalidade}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">COMUNA/BAIRRO(onde reside)</b> <span style="color: red;">*</span><input
+							type="text" class="form-control" id="telefone1"
+							th:field="*{identificacao.bairro}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">RUA(onde reside)</b> <input class="form-control" type="text"
+							id="tefo2" th:field="*{identificacao.rua}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">CASA N.(onde reside)</b> <input type="text"
+							class="form-control" id="email"
+							th:field="*{identificacao.numerocasa}">
+					</div>
+				</div>
+
+
+
+				<!-- QUARTA linha -->
+				<div class="form-group row">
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">TIPO DE DOCUMENTO</b><span style="color: red;">*</span> <select
+							class="form-control"  th:value="*{documento.tipodedocumento} "
+							name="escalao" id="escalao">
+				
+							<option value="PASSAPORT" th:text="*{documento.tipodedocumento} "></option>
+						</select>
+
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">NÚMERO DE DOCUMENTO</b><span style="color: red;">*</span><input
+							max="14" min="14" type="text" class="form-control" id="numero1"
+							th:value="*{documento.numero}" readonly="readonly">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">LOCAL DE EMISSÃO</b> <input class="form-control" type="text"
+							id="emis" th:fvalue="*{documento.localdeemissao}"
+							readonly="readonly">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">DATA DE EMISSÃO</b> <input class="form-control" type="date"
+							id="emis" th:value="*{documento.datadeemissao}">
+					</div>
+					<div class="col-sm-2">
+
+						<b style="font-size: 8px;">DATA DE CADUCIDADE</b> <input type="date" class="form-control"
+							id="caduc" th:value="*{documento.caducidade}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">TELEFONE (requerente)</b> <span style="color: red;">*</span><input
+							type="text" class="form-control" id="telefone1"
+							th:value="*{telefonerequerente}">
+					</div>
+				</div>
+
+
+				<div class="form-group row">
+
+
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">E-MAIL (requerente)</b> <input class="form-control"
+							type="email" id="e" th:value="*{emailrequerente}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">NOME (testemunha)</b> <input type="text" class="form-control"
+							id="nt" th:value="*{nometest}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">TELEFONE (testemunha)</b> <span style="color: red;">*</span><input
+							type="text" class="form-control" id="telefonet"
+							th:value="*{telefonetest}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">PROVÍNCIA(testemunha)</b> <input
+							class="form-control" placeholder="local" type="text"
+							name="provinciat" id="provinciat" th:value="*{provinciatest}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">COMUNA/BAIRRO/RUA/CASA</b> <input type="text"
+							class="form-control" id="comunarua" name="cpmunarua"
+							th:value="*{comunatest}">
+					</div>
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">BANCO(beneficiario)</b> <input type="text" class="form-control"
+							id="beneficiario" name="beneficiario" th:value="*{banco}">
+					</div>
+				</div>
+
+
+				<div class="form-group row">
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">CONTA(beneficiario)</b> <span style="color: red;">*</span><input
+							type="text" class="form-control" id="conta" name="conta"
+							th:value="*{conta}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">IBAN (beneficiario)</b> <input class="form-control" type="text"
+							id="iban" name="iban" th:value="*{iban}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">NOME(beneficiario)</b> <input type="text" class="form-control"
+							id="nome1" name="nome" th:value="*{ben}">
+					</div>
+					<div class="col-sm-1">
+						<b style="font-size: 8px;">PAIS</b> <input type="text" class="form-control" id="pais"
+							name="pais" th:value="*{pais_}">
+					</div>
+
+
+					<div class="col-sm-1">
+						<b style="font-size: 8px;">ESTADO</b><span style="color: red;">*</span> <select
+							class="form-control" th:field="*{estado} " name="estado"
+							id="estadoM">
+							<option value=" ">=ESCOLHE=</option>
+							<option selected="selected" value="ATIVO">ATIVO</option>
+							<option value="REEMBOLSADOCOMMULTA">REEMBOLSADO FORA DO PRAZO</option>
+							<option value="REEMBOLSADOSEMMULTA">REEMBOLSADO DENTRO DO PRAZO</option>
+						</select>
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">LUCRO  SEM MULTA</b> <span style="color: red;"></span><input
+							type="number" class="form-control" id="lcrF1" name="FFF" readonly="readonly"
+							th:value="*{juroDaAplicacao()}">
+					</div>
+
+					<div class="col-sm-2">
+						<b style="font-size: 8px;">LUCRO COM MULTA</b> <input class="form-control" type="number"
+							id="lcrmF" name="VLC" th:value="*{jurosDeMulta()}" readonly="readonly">
+					</div>
+
+				</div>
+
+				<div class="form-group row">
+				
+				<div class="col-sm-4">
+				<textarea class="form-control" rows="5" cols="30"
+				th:field="*{descricao}"></textarea>
+				</div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-2">
+						<input type="submit" value="SALVAR ALTERACAO"
+							class="form-control btn btn-primary">
+					</div>
+					<div class="col-sm-2">
+						<a th:href="@{/pedidos}" class="btn btn-info">VOLTAR</a>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					
+					
+					<div class="col-sm-4"></div>
+					<div class="col-sm-4"></div>
+					
+				
+				</div>
+
+			</form>
+		</div>
+	</div>
+	</div>
+
+</body>
+</html>

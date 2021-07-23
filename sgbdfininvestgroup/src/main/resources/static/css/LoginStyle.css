@@ -1,0 +1,112 @@
+.input-dodos-campo1, .input-dodos-campo2{
+  width: 160px;
+  height: 35px;
+  margin-top: 15px;
+  border: 1px solid rgb(0,0,0,.2);
+  text-align: center;
+  font-size: 12px;
+  font-family: Arial;
+  border-radius: 3px;
+}
+
+.input-dodos-campo1:active, .input-dodos-campo2:active{
+  width: 270px;
+  border: 3px solid #0099fa;
+  height: 32px;
+  transition: 0.3s;
+}
+
+.input-dodos-campo1:focus, .input-dodos-campo2:focus{
+  width: 270px;
+  height: 32px;
+  border: 3px solid #0099fa;
+  transition: 0.3s;
+}
+
+.btn-login-1, .btn-login-2{
+  width: 120px;
+  height: 35px;
+  border: none;
+  background: none;
+  font-family: Arial;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.btn-login-1{
+  background-color: #0099fa;
+  color: #fff;
+  font-weight: bolder;
+}
+
+.btn-login-2{
+  background-color: orange;
+  color: #fff;
+  font-weight: bolder;
+  margin-top: 5px;
+}
+
+.btn-login-2:hover{
+  transition: .2s;
+  transform: scale(1.03);
+}
+
+.btn-login-2:focus{
+  transition: .2s;
+  transform: scale(1.0);
+}
+
+.btn-login-1:hover{
+  transition: .2s;
+  transform: scale(1.03);
+}
+
+.btn-login-1:focus{
+  transition: .2s;
+  transform: scale(1.0);
+}
+
+footer{
+  border: 1px solid rgb(0,0,0,.1);
+  border-bottom: 0;
+  width: 300px;
+  align-self: center;
+}
+
+.goBack1, .goBack2{
+  top: 2%;
+  width: 100px;
+  height: 40px;
+  font-family: Arial;
+  position: fixed;
+  font-size: 12px;
+  background: none;
+  border: 1px solid rgb(0,0,0,.1);
+  color: rgb(0,0,0,.3);
+  cursor: pointer;
+  margin-left: 15px;
+  transition: .3s;
+}
+
+.goBack2{
+  background: rgb(0,0,0,.4);
+  color: #fff;
+  transition: .3s;
+  margin-left: 120px;
+}
+
+.goBack1:hover{
+  transition: .3s;
+  background: #fff;
+  border: 1px solid rgb(0,0,0,.1);
+  color: rgb(0,0,0,.5);
+  box-shadow: 1px 1px 10px 1px rgb(0,0,0,.3);
+}
+
+.goBack2:hover{
+  transition: .3s;
+  background: #0099fa;
+  border: 1px solid rgb(0,0,0,.1);
+  color: rgb(0,0,0,.5);
+  box-shadow: 1px 1px 10px 1px rgb(0,0,0,.3);
+}

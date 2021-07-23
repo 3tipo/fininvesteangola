@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container-fluid">
+		<div class="card">
+			<div class="card-header">
+				<span class="label label-info" th:text="${titulo}"></span>
+			</div>
+
+			<div class="card-body">
+
+				<form th:action="@{/socios/save}" th:object="${fichadoSocio}"
+					method="post">
+
+
+					<div class="form-group row">
+						<div class="col-sm-3">
+							<b style="font-size: 10px;">PRIMEIRO NOME</b> <span
+								style="color: red;">*</span><input class="form-control"
+								required="required" type="text" id="pnome"
+								th:field="*{dadospessoais.primeironome}">
+						</div>
+
+						<div class="col-sm-2">
+							<b style="font-size: 10px;">SOBRE NOME</b> <span
+								style="color: red;">*</span><input required="required"
+								type="text" class="form-control" id="snome"
+								th:field="*{dadospessoais.segundonome}">
+						</div>
+
+						<div class="col-sm-2">
+							<b style="font-size: 10px;">NÚMERO DO SÓCIO</b> <span
+								style="color: red;">*</span><input class="form-control"
+								type="text" required="required" id="numerosocio"
+								th:field="*{numerosocio}">
+						</div>
+						<div class="col-sm-2">
+							<b style="font-size: 10px;">FILHO DE (nome do progenitor)</b> <input
+								class="form-control" type="text" id="npnome"
+								th:field="*{dadospessoais.nomedopai}">
+						</div>
+
+						<div class="col-sm-2">
+							<b style="font-size: 3px;">E DE (nome da progenitora)</b> <input
+								class="form-control" type="text" id="npnome"
+								th:field="*{dadospessoais.nomedamae}">
+						</div>
+						<div class="col-sm-1">
+							<b style="font-size: 3px;">CATEGORIA</b> <span style="color: red;">*</span><select
+								required="required" class="form-control" th:field="*{nivel} "
+								name="nivel" id="nivel">
+								<option value="ROLE_USER" selected="selected">=USUÁRIO=</option>
+								<option value="ROLE_ADMIN" selected="selected">=ADMIN=</option>
+							</select>
+						</div>
+					</div>
+
+
+
+
+
+					<!-- segunda linha -->
+					<div class="form-group row">
+
+						<div class="col-sm-3">
+
+							<b style="font-size: 10px;">DATA DE NASCIMENTO</b> <input
+								class="form-control" type="date" id="data"
+								th:field="*{dadospessoais.datanascimento}">
+						</div>
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">NATURALIDADE (onde nasceu)</b> <input type="text"
+								class="form-control" id="natural"
+								th:field="*{dadospessoais.naturalidade}">
+						</div>
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">PROVÍNCIA (onde nasceu)</b> <input class="form-control"
+								type="text" id="provin" th:field="*{dadospessoais.provincia}">
+						</div>
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">MUNICÍPIO (onde nasceu)</b> <input type="text"
+								class="form-control" id="municipio"
+								th:field="*{dadospessoais.municipio}">
+
+						</div>
+
+					</div>
+
+					<!-- terceira linha -->
+					<div class="form-group row">
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">MUNICÍPIO ONDE RESIDE</b> <input class="form-control"
+								type="text" id="comuna"
+								th:field="*{dadospessoais.municipioreseidente}">
+						</div>
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">  BAIRRO ONDE RESIDE</b> <input type="text" class="form-control"
+								id="bairro" th:field="*{dadospessoais.bairro}">
+						</div>
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">RUA ONDE RESIDE</b> <input class="form-control" type="text"
+								id="rua" th:field="*{dadospessoais.rua}">
+						</div>
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">REFERÊNCIA (quarteirão/número prédio(casa))</b><input
+								type="text" class="form-control" id="casanumero"
+								th:field="*{dadospessoais.numerocasa}">
+						</div>
+
+					</div>
+
+					<!-- quarta linha -->
+					<div class="form-group row">
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">NACIONALIDADE</b> <input class="form-control" type="text"
+								id="nacionalidade" th:field="*{dadospessoais._nacionalidade}">
+						</div>
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">TELEFONE PRIORITÁRIO</b> <span style="color: red;">*</span><input
+								required="required" type="text" class="form-control"
+								id="telefone1" th:field="*{dadospessoais._telefone1}">
+						</div>
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">TELEFONE ALTERNATIVO</b> <input class="form-control"
+								type="text" id="tefo2" th:field="*{dadospessoais._telefone2}">
+						</div>
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">E-MAIL</b> <input type="email" class="form-control" id="email"
+								th:field="*{dadospessoais._email}">
+						</div>
+
+					</div>
+
+					<!-- quinta linha -->
+					<div class="form-group row">
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">OUTROS DETALHES</b> <input class="form-control" type="text"
+								id="residencia" th:field="*{dadospessoais.residenciactual}">
+						</div>
+						<div class="col-sm-2">
+							<b style="font-size: 3px;"> TIPO DE DOCUMENTO</b><span style="color: red;">*</span> <select
+								required="required" class="form-control"
+								th:field="*{identificacao.tipodedocumento} " name="escalao"
+								id="escalao">
+								<option value=" " selected="selected">=ESCOLHE=</option>
+								<option value="BI">BILHETE DE IDENTIDADE</option>
+								<option value="PASSAPORT">PASSAPORT</option>
+							</select>
+
+						</div>
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">NÚMERO DE DOCUMENTO</b><span style="color: red;">*</span><input
+								required="required" max="14" min="14" type="text"
+								class="form-control" id="numero1"
+								th:field="*{identificacao.numero}">
+						</div>
+						<div class="col-sm-2">
+							<b style="font-size: 3px;">LOCAL DE EMISSÃO</b> <input class="form-control" type="text"
+								id="emis" th:field="*{identificacao.localdeemissao}">
+						</div>
+						<div class="col-sm-2">
+
+							<b style="font-size: 3px;">DATA DE CADUCIDADE</b> <input type="date" class="form-control"
+								id="caduc" th:field="*{identificacao.caducidade}">
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+
+
+						<div class="col-sm-3">
+							<b style="font-size: 3px;">ESCALÃO</b> <span style="color: red;">*</span><select
+								required="required" class="form-control" th:field="*{escalao} "
+								name="tipo" id="tipo">
+								<option value=" " selected="selected">=OPÇÕES=</option>
+								<option th:each="esca: ${escalaos} " th:value="${esca.escalao}"
+									th:text="${esca.escalao}"></option>
+							</select>
+						</div>
+
+
+						<div class="col-sm-2">
+
+
+							<span style="color: green;font-size: 3px;">INÍCIO DE PAGAMENTOS</span><span
+								style="color: red;">*</span> <input type="number" step="1"
+								min="2020" max="3990" class="form-control" id="anoi"
+								th:field="*{anoinicio}">
+
+						</div>
+
+
+						<div class="col-sm-2">
+							<span style="color: green;font-size: 3px;">FIM DE PAGAMENTOS</span> <span
+								style="color: red;">*</span> <input required="required"
+								type="number" step="1" min="2021" max="3990"
+								class="form-control" id="anof" th:field="*{anodefim}">
+
+						</div>
+					<div class="col-sm-2">
+					<span style="color: white;font-size: 3px;">FIM DE PAGAMENTOS</span>
+						
+							<input type="submit" value="SALVAR"
+								class="form-control btn btn-primary">
+						
+						</div>
+						<div class="col-sm-2">
+						<span style="color: white;font-size: 3px;">FIM DE PAGAMENTOS</span>
+						
+							<input type="reset" value="CANCELAR"
+								class="form-control btn btn-danger">
+						
+					</div>
+
+					</div>
+
+
+					
+						
+
+				</form>
+			</div>
+		</div>
+	</div>
+</html>

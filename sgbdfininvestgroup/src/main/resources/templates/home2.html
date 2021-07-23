@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="newTamplate/layout/layout :: head"></head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container py-5">
+
+		<div class="card">
+			<div class="card-header">
+				<span class="label label-info" th:text="${socio}"></span> 
+			</div>
+			<div class="card-body">
+				<ul class="list list-horizontal">
+					<li class="list-group-item"><a 	th:href="@{/bonos/ver}">Consultar bonos</a>
+					<a 
+						th:href="@{/consultartx}">Taxas</a>
+						<a 
+						th:href="@{/consultarqt}">Quotas</a></li>
+			<li class="list-group-item">
+						
+				<form th:action="@{/consultartx/anoa}" th:object="${pesquisa}"
+					method="post">
+					<div class="form-group row">
+						<div class="col-sm-2">
+							<input type="submit" style="width: 160px;" value="Taxas do ano:"
+								class="form-control btn btn-default btn-xs">
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control" required="required" type="number"
+								min="2021" max="2099" th:field="*{ano}">
+						</div>
+					</div>
+				</form>
+				<form th:action="@{/consultarqt/anoa}" th:object="${pesquisa}"
+					method="post">
+
+					<div class="form-group row">
+						<div class="col-sm-2">
+							<input type="submit" style="width: 160px;" value="Quotas do ano:"
+								class="form-control btn btn-default btn-xs">
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control" required="required" type="number"
+								min="2021" max="2099" th:field="*{ano}">
+						</div>
+
+					</div>
+				</form>
+				</li>
+				<li class="list-group-item">
+				<form th:action="@{/mudarsenha}" th:object="${pesquisa}"
+					method="post">
+					<div class="form-group row">
+						<div class="col-sm-2">
+							<input type="submit" style="width: 160px;color: red;" value="Alterar senha"
+								class="form-control btn btn-default btn-xs">
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control" size="12"  style="width: 400px;" placeholder="exemplo:12#@.201" required="required" type="password"
+								maxlength="8" th:field="*{mes}">
+						</div>
+
+					</div>
+				</form>
+				
+				</li>
+				</ul>
+			</div>
+			<div class="card-footer">
+				<span class="label label-info" th:text="${titulo}"></span> <span
+					class="label label-info" th:text="${quota}"></span>
+			</div>
+		</div>	
+	</div>
+</body>
+</html>

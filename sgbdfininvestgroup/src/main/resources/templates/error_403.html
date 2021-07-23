@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head"></head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<div class="container py-4">
+
+		<div class="card bg-danger text-white">
+			<div class="card-header">Erro: Acceso negado!</div>
+			<div class="card-body">
+				<h5 class="card-title">
+					lamentamos,
+					não tens permissões para aceder estes recurso.
+				</h5>
+				<a th:href="@{/}" class="btn btn-outline-light" role="button">Ir
+					ao início</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container-fluid">
+		<div class="card"><div class="card-header">
+			<span th:text="${titulo}"></span>
+		</div>
+		<div class="card-body">
+            <table class="table table-hover" >
+					<thead >
+						<tr>
+							<th >VALOR DO BONOS</th>
+							<th >ESTADO DO BONOS</th>
+							<th >BI/PASSAPORT-BENEFICIÁRIO</th>
+							<th >DATA DE REGISTO</th>
+							<th >DATA DE PAGAMENTO</th>
+							<th >CLIENTE</th>
+						</tr>
+					</thead>
+					<tbody >
+						<tr  th:each="b: ${bonos}">
+							<td  th:text="${b.valorbonos}"></td>
+							<td th:text="${b.estadobonus}"></td>
+							<td  th:text="${b.bibeneficiari}"></td>
+							<td th:text="${b.dataregisto}"></td>
+							<td th:text="${b.datapagamento}"></td>
+							<td th:text="${b.nomedocliente}"></td>
+						</tr>	
+					</tbody>
+			</table>
+      
+		</div>
+	</div>
+	
+	</div>
+
+</body>
+</html>

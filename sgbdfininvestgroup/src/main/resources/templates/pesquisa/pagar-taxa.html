@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container-fluid">
+		<div class="card"><div class="card-header">
+			<span class="label label-info" th:text="${titulo}"></span>
+		</div>
+		
+		<div class="card-body">
+            <table class="table table-sm table-hover" id="tablet" style="align-content: center;">
+					<thead style="background-color: orange;">
+						<tr>
+							<th style="font-size: 3px;">SÓCIO</th>
+							<th style="font-size: 3px;">MÊS</th>
+							<th style="font-size: 3px;">ANO</th>
+							<th style="font-size: 3px;">VALOR DE TAXA</th>
+							<th style="font-size: 3px;">DATA DE PAG. TAXA</th>
+							<th style="font-size: 3px;">VALOR DE MULTA</th>
+							<th style="font-size: 3px;">NÚMERO RECIBO</th>
+							<th style="background-color: cyan;font-size: 3px;" >PAGO</th>
+							<th style="background-color: red;font-size: 3px;">MULTA</th>
+							<th style="font-size: 3px;">JUROS APLICADO</th>
+							<th style="font-size: 3px;">EDITAR</th>
+							<th style="font-size: 3px;">PDF</th>
+						</tr>
+					</thead>
+					<tbody >
+						<tr th:each="taxa: ${taxas}"   >
+						<td  style="background-color: orange;font-size: 3px;" th:text="${taxa.nomedosocio}"></td>
+							<td  style="background-color: orange;font-size: 3px;" th:text="${taxa.t_mespago}"></td>
+							<td  style="background-color: orange;font-size: 3px;" th:text="${taxa.t_anopago}"></td>
+							<td style="font-size: 3px;" th:text="${taxa.t_valor}+kz"></td>
+							<td style="font-size: 3px;" th:text="${taxa.t_datapagamento}"></td>
+							<td style="font-size: 3px;" th:text="${taxa.valordamulta}+'kz'"></td>
+							<td style="font-size: 3px;" th:text="${taxa.t_numerorecibo}"></td>
+							<td style="font-size: 3px;" ><input class="btn btn-sm btn-default" readonly="readonly"  type="button" th:value="${taxa.isRecebido}" th:if="${taxa.isRecebido} "  style="background-color: cyan;"></td>						
+							<td style="font-size: 3px;"><input class="btn btn-sm btn-default" readonly="readonly" type="button" th:value="${taxa.isMultado}" th:if="${taxa.isMultado} "  style="background-color: red;"></td>
+                          	<td style="font-size: 3px;" th:text="${taxa.t_juros}+'%'"></td>
+							<td style="font-size: 3px;" ><a th:href="@{/taxa/{id}(id=${taxa.id})}"><span  >Editar</span></a></td>
+							<td style="font-size: 3px;" ><a th:href="@{/taxa/exportar/{id}(id=${taxa.id})}" ><span >.PDF</span></a></td>
+						</tr>	
+					</tbody>
+			</table>
+      
+		</div>
+</div></div>
+</body>
+</html>

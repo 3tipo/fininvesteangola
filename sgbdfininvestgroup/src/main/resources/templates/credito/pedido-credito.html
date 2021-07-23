@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="newTamplate/layout/layout :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="newTamplate/layout/layout :: header"></header>
+	<footer th:replace="newTamplate/layout/layout :: footer"></footer>
+	<div class="container-fluid">
+		<div class="card"><div class="card-header">
+			<span class="label label-info" th:text="${assunto}"></span>
+		</div>
+		
+		<div class="card-body">
+            <table class="table table-sm table-hover" id="tablet" style="align-content: center;">
+					<thead style="background-color: olive;">
+						<tr>
+							<th style="font-size: 3px;">CLIENTE</th>
+							<th style="font-size: 3px;">CRÉDITO</th>
+							<th style="font-size: 3px;">INTERVALO DE VALOR(KZ)</th>
+							<th style="font-size: 3px;">PRAZO DE REEMBOLSO</th>
+							<th style="font-size: 3px;">JURO APLICÁVEL</th>
+							<th style="font-size: 3px;">JURO POR INCUMPRIMENTO</th>
+							<th style="font-size: 3px;">OBS</th>
+							<th style="font-size: 3px;">OPERAÇÃO</th>
+							<th style="font-size: 3px;">EXCLUIR</th>
+						</tr>
+					</thead>
+					<tbody >
+						<tr th:each="c: ${creditos}"   >
+						<td  style="background-color: olive;" th:text="${c.tipodecliente}"></td>
+							<td  style="background-color: olive;font-size: 3px;" th:text="${c.tipodecredito}"></td>
+							<td  style="background-color: olive;font-size: 3px;" th:text="${c.intervalodevalor}"></td>
+							<td style="font-size: 3px;" th:text="${c.prazodereembolso}"></td>
+							<td style="font-size: 3px;" th:text="${c.juroaplicavel}+'%'"></td>
+							<td style="font-size: 3px;" th:text="${c.taxadeincumprimento}+'%'"></td>
+							<td style="font-size: 3px;" th:text="${c.descricao}"></td>
+							
+							<td style="font-size: 3px;">
+							<a  th:href="@{/pedido-form/{id}(id=${c.id})}"><span  >Pedido</span></a></td>
+							<td style="font-size: 3px;"><a th:href="@{/credito/excluir/{id}(id=${c.id})}"><span  >Excluir</span></a></td>
+							
+						</tr>	
+					</tbody>
+			</table>
+      </div>
+		</div>
+	</div>
+
+</body>
+</html>
